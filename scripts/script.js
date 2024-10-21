@@ -36,6 +36,32 @@ let clients = [
     }
 ]
 
+
+bestClients = [
+    {
+        firstName: 'Алексей',
+        lastName: 'Петров',
+        date: '11-30-1998',
+        phone: '8(999)-00-00-90',
+        amounts: [546, 1198, 1764, 761]
+    },
+    {
+        firstName: 'Виталий',
+        lastName: 'Иванов',
+        date: '12-31-1987',
+        phone: '+7 925-252-25',
+        amounts: [56, 887, 1889, 544]
+    },
+    {
+        firstName: 'Анастасия',
+        lastName: 'Стоцкая',
+        date: '04-25-1987',
+        phone: '8(999) 466-91-81',
+        amounts: [16525, 2837, 283, 92]
+    }
+]
+
+
 class Client {
     constructor(client) {
         this.firstName = client.firstName;
@@ -46,6 +72,60 @@ class Client {
     }
 }
 
-let newClient = new Client(clients[0])
+function addNewClient() {
+    let newClient = {}
 
-console.log(newClient)
+    newClient.firstName = prompt('Введите имя')
+    newClient.lastName = prompt('Введите фамилию')
+    newClient.date = prompt('Введите дату рождения в формате мм-дд-гггг')
+    newClient.phone = prompt('Введите телефон')
+    newClient.amounts = []
+
+    while (confirm(`Добавить покупку для клиента ${newClient.firstName}?`)) {
+        let amount = parseInt(prompt('Введите сумму покупки'))
+        if (amount) {
+            newClient.amounts.push(amount)
+        }
+    }
+    clients.push(newClient)
+    return newClient
+}
+
+// console.log(addNewClient())
+
+
+function fullName(obj) {
+    return `${obj.firstName} ${obj.lastName}`
+}
+
+function getBirthday(birthdayString) {
+    const months = [
+        'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля',
+        'августа', 'сентября', 'октября', 'ноября', 'декабря'
+    ]
+    let birthday = new Date(birthdayString)
+    let today = new Date();
+    let isToday = (birthday.getDate() === today.getDate() && birthday.getMonth() === today.getMonth()) ? ' (сегодня)' : ''
+    return `${birthday.getDate()} ${months[birthday.getMonth()]}${isToday}`;
+}
+
+function getAllAmount(array) {
+    return array.reduce((sum, el) => sum + el, 0);
+}
+
+function getAverageAmount(array) {
+    return (array.reduce((sum, el) => sum + el, 0) / array.length).toFixed(1);
+}
+
+showClients = (clients) => {
+    try {
+        clients.forEach((client) => {
+            console.log(`Клиент ${fullName(client)} имеет среднюю сумму чека ${getAverageAmount(client.amounts)}. День рождения клиента: ${getBirthday(client.date)}`);
+        })
+    } catch (err) {
+        console.log('Вызвана функция без параметров')
+        console.log(err.message);
+    }
+}
+
+let Qwe = setTimeout(showClients(bestClients), 30000)
