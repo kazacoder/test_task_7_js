@@ -145,3 +145,4 @@ function whoSpentMore (array) {
 }
 
 whoSpentMore(clients)
+whoSpentMore(bestClients)
