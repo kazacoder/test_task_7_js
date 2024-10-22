@@ -128,4 +128,20 @@ showClients = (clients) => {
     }
 }
 
-let Qwe = setTimeout(showClients(bestClients), 30000)
+setTimeout(() => {showClients(bestClients)} , 3000)
+
+
+function whoSpentMore (array) {
+    let client
+    let max_amount = 0
+    for (let el of array) {
+        let current_amount = getAllAmount(el.amounts)
+        if (current_amount >= max_amount) {
+            max_amount = current_amount
+            client = el
+        }
+    }
+    console.log(`Больше всех потратил ${fullName(client)}. Сумма покупок: ${max_amount}.`)
+}
+
+whoSpentMore(clients)
