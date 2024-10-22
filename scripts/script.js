@@ -62,17 +62,6 @@ bestClients = [
 ]
 
 
-class Client {
-    constructor(client) {
-        this.firstName = client.firstName;
-        this.lastName = client.lastName;
-        this.date = client.date;
-        this.phone = client.phone;
-        this.amounts = client.amounts;
-    }
-}
-
-
 // Часть Первая: обернул в функцию, чтобы удобнее было отключать
 function addNewClient() {
     let newClient = {}
