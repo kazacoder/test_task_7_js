@@ -54,7 +54,7 @@ bestClients = [
     },
     {
         firstName: 'Анастасия',
-        lastName: 'Стоцкая',
+        lastName: 'Мельникова',
         date: '04-25-1987',
         phone: '8(999) 466-91-81',
         amounts: [16525, 2837, 283, 92]
@@ -72,6 +72,8 @@ class Client {
     }
 }
 
+
+// Часть Первая: обернул в функцию, чтобы удобнее было отключать
 function addNewClient() {
     let newClient = {}
 
@@ -91,12 +93,16 @@ function addNewClient() {
     return newClient
 }
 
-// console.log(addNewClient())
+console.log(addNewClient())
 
 
+// Часть Вторая
 function fullName(obj) {
     return `${obj.firstName} ${obj.lastName}`
 }
+
+// console.log(fullName(clients[1]))
+
 
 function getBirthday(birthdayString) {
     const months = [
@@ -109,13 +115,24 @@ function getBirthday(birthdayString) {
     return `${birthday.getDate()} ${months[birthday.getMonth()]}${isToday}`;
 }
 
+// console.log(getBirthday('02-02-1981'))
+// console.log(getBirthday(clients[0].date))
+// console.log(getBirthday('10-22-1981'))
+
+
 function getAllAmount(array) {
     return array.reduce((sum, el) => sum + el, 0);
 }
 
+// console.log(getAllAmount(clients[1].amounts));
+
+
 function getAverageAmount(array) {
     return (array.reduce((sum, el) => sum + el, 0) / array.length).toFixed(1);
 }
+
+// console.log(getAverageAmount(clients[2].amounts))
+
 
 showClients = (clients) => {
     try {
@@ -127,6 +144,10 @@ showClients = (clients) => {
         console.log(err.message);
     }
 }
+
+showClients(clients);
+showClients();
+
 
 setTimeout(() => {showClients(bestClients)} , 3000)
 
